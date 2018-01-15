@@ -1,29 +1,31 @@
 #+TITLE: Notes on The {Little, Seasoned, Reasoned} Schemer series
 #+AUTHOR: Jacob Dillon
 #+EMAIL: jad@sdf.org
+#+OPTIONS: toc:3 num:2
 
 * A Note on Notation
 Friedman and Felleisen define their notational conventions in the
 Preface of /The Little Schemer/.  Here is what that section says:
 
-=We use a few notational conventions throughout the text, primarily
+#+BEGIN_QUOTE
+We use a few notational conventions throughout the text, primarily
 changes in typeface for different classes of symbols.  Variables and
 the names of primitive operations are in /italic/.  Basic data,
 including numbers and representations of truth and falsehood, is set
 in ~sans serif~.  Keywords, i.e, *define*, *lambda*, *cond*, *else*, *and*, *or*,
-and *quote*, are in *boldface*.=
+and *quote*, are in *boldface*.
+#+END_QUOTE
 
 I will follow these conventions throughout this document, but will
-also wrap meaningful blocks of code in org src blocks.
+also wrap code in org src blocks in order to execute it using babel.
 
 * The Little Schemer
 ** The Ten Commandments
 *** The First Commandment
-When recurring on a list of atoms, /lat/, ask two questions about it:
-~(null? lat)~ and *else*.  When recurring on a number, /n/, ask two
-questions about it: ~(zero? n)~ and *else*.  When recurring on a list of
-S-expressions, /l/, ask three question about it: ~(null? l)~, ~(atom?
-(car l))~, and *else*.
+When recurring on a list of atoms, /lat/, ask two questions about it: (/null?/ /lat/) and *else*.  When recurring on a number, /n/, ask two
+questions about it: (/zero?/ /n/) and *else*.  When recurring on a list of
+S-expressions, /l/, ask three question about it: (/null?/ /l/), (/atom?/
+(/car/ /l/)), and *else*.
 
 *** The Second Commandment
 Use /cons/ to build lists.
@@ -34,10 +36,10 @@ When building a list, describe the first typical element, and then
 
 *** The Forth Commandment
 Always change at least one argument while recurring.  When recurring
-on a list of atoms, /lat/, use ~(cdr lat)~.  When recurring on a number,
-/n/, use ~(sub1 n)~.  When recurring on a number, /n/, use ~(sub1 n)~.  And
-when recurring on a list of S-expressions, /l/, use ~(car l)~ and ~(cdr l)~
-if neither ~(null? l)~ nor ~(atom? (car l))~ are true.
+on a list of atoms, /lat/, use (/cdr/ /lat/).  When recurring on a number,
+/n/, use (/sub1/ /n/).  When recurring on a number, /n/, use (/sub1/ /n/).  And
+when recurring on a list of S-expressions, /l/, use (/car/ /l/) and (/cdr/ /l/)
+if neither (/null?/ /l/) nor (/atom?/ (/car/ /l/)) are true.
 
 It must be changed to be closer to termination.  The changing argument
 must be tested in the termination conditions:
